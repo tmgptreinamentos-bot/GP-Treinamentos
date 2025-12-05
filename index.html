@@ -3,234 +3,145 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>GP Treinamentos</title>
-
+<title>GP Treinamentos — catálogo</title>
 <style>
-/* ============================
-       TEMA PRETO E DOURADO
-   ============================ */
-:root {
-    --bg1: #000000;
-    --bg2: #2b2b2b;
-    --card-bg: #111111;
-    --text: #ffffff;
-    --gold: #d4af37;
-    --border: #3a3a3a;
+:root{
+  --bg1:#000; --bg2:#222; --card:#111; --gold:#d4af37; --border:#333; --text:#fff;
 }
-
-/* Fundo com gradiente */
-body {
-    margin: 0;
-    font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(180deg, var(--bg1), var(--bg2));
-    color: var(--text);
-    padding: 20px;
+body{
+  margin:0; font-family:Inter,Arial,sans-serif; background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  color:var(--text); padding:18px;
 }
-
-/* Área central */
-.container {
-    max-width: 900px;
-    margin: auto;
-}
-
-/* Título */
-h1 {
-    text-align: center;
-    color: var(--gold);
-    font-size: 28px;
-    margin-bottom: 25px;
-}
-
-/* ============================
-       CARD DO FORMULÁRIO
-   ============================ */
-.card {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
-    margin-bottom: 40px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    color: var(--gold);
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    border: 1px solid var(--border);
-    background: #222;
-    color: var(--text);
-    font-size: 16px;
-}
-
-/* Botão principal */
-button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    background: var(--gold);
-    color: #000;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-}
-button:hover {
-    opacity: 0.85;
-}
-
-/* ============================
-       LISTA DE CURSOS
-   ============================ */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-}
-
-.item {
-    background: var(--card-bg);
-    padding: 10px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    text-align: center;
-    position: relative;
-}
-
-/* Imagem do curso */
-.item img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-}
-
-/* Checkbox no canto */
-.item input[type="checkbox"] {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    transform: scale(1.4);
-}
-
-/* Botão de solicitar */
-#btnSolicitar {
-    margin-top: 30px;
-    background: var(--gold);
-    color: #000;
-    font-size: 20px;
-    padding: 15px;
-    border-radius: 12px;
-}
+.container{max-width:920px;margin:0 auto;}
+h1{color:var(--gold);text-align:center;margin-bottom:18px;}
+.card{background:var(--card);padding:14px;border-radius:12px;border:1px solid var(--border); margin-bottom:22px;}
+label{color:var(--gold);font-weight:600;margin-bottom:6px;display:block;}
+input{width:100%;padding:11px;border-radius:8px;border:1px solid var(--border);background:#222;color:var(--text);margin-bottom:12px;}
+button{width:100%;padding:13px;border-radius:10px;border:none;background:var(--gold);color:#000;font-weight:700;font-size:16px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:8px;}
+.item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:8px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;height:160px;}
+.item img{width:100%;height:100%;object-fit:cover;border-radius:8px;}
+.item input[type="checkbox"]{position:absolute;right:8px;top:8px;transform:scale(1.35);}
+#btnSolicitar{margin-top:18px;background:var(--gold);color:#000;padding:14px;border-radius:10px;font-size:18px;}
+.small-note{color:#bbb;font-size:13px;margin-top:8px;text-align:center;}
 </style>
 </head>
-
 <body>
 <div class="container">
+  <h1>GP Treinamentos</h1>
 
-    <h1>GP Treinamentos</h1>
+  <div class="card">
+    <label>Nome</label>
+    <input id="nome" type="text" placeholder="Seu nome">
+    <label>Telefone</label>
+    <input id="telefone" type="text" placeholder="(xx) xxxxx-xxxx">
+    <label>E-mail</label>
+    <input id="email" type="email" placeholder="seu@exemplo.com">
+    <button onclick="salvarDados()">Salvar dados</button>
+    <div class="small-note">Salve seus dados antes de solicitar PDFs.</div>
+  </div>
 
-    <!-- FORMULÁRIO -->
-    <div class="card">
-        <label>Nome:</label>
-        <input type="text" id="nome" placeholder="Seu nome">
+  <div id="grid" class="grid" aria-live="polite"></div>
 
-        <label>Telefone:</label>
-        <input type="text" id="telefone" placeholder="Seu telefone">
-
-        <label>E-mail:</label>
-        <input type="email" id="email" placeholder="Seu e-mail">
-
-        <button onclick="salvarDados()">Entrar</button>
-    </div>
-
-    <!-- LISTA DINÂMICA -->
-    <div class="grid" id="listaCursos"></div>
-
-    <!-- Botão de solicitar PDFs -->
-    <button id="btnSolicitar" onclick="solicitarPDFs()">Solicitar Selecionados</button>
-
+  <button id="btnSolicitar" onclick="solicitar()">Solicitar PDFs selecionados</button>
+  <div id="status" class="small-note"></div>
 </div>
 
 <script>
-/* CARREGAR CURSOS DA PLANILHA */
-async function carregarCursos() {
-    const url = "https://script.google.com/macros/s/AKfycbzAQozrqKD_zwMbAZY4cPU_tpsPYVk1Wsp6Z2JM4D9o8c3tNAbgKUftaU6rmQWoIZvO/exec";
+const WEBAPP = "https://script.google.com/macros/s/AKfycbzAQozrqKD_zwMbAZY4cPU_tpsPYVk1Wsp6Z2JM4D9o8c3tNAbgKUftaU6rmQWoIZvO/exec";
 
-    let dados = await fetch(url);
-    let cursos = await dados.json();
+// Converter vários formatos de URL do Drive para uma URL direta (lh3) usada nos <img>
+function toDirectImageURL(raw) {
+  if (!raw) return null;
+  // se já for lh3, retorna direto
+  if (raw.includes("lh3.googleusercontent.com")) return raw;
+  // formato uc?export=view&id=ID
+  let m = raw.match(/uc\?export=view&id=([-\w]+)/);
+  if (m && m[1]) return `https://lh3.googleusercontent.com/d/${m[1]}=s1000`;
+  // formato file/d/ID/view...
+  m = raw.match(/\/file\/d\/([-\w]+)/);
+  if (m && m[1]) return `https://lh3.googleusercontent.com/d/${m[1]}=s1000`;
+  // formato share link with id in url
+  m = raw.match(/[-\w]{25,}/);
+  if (m && m[0]) return `https://lh3.googleusercontent.com/d/${m[0]}=s1000`;
+  // fallback: retorna original (talvez funcione)
+  return raw;
+}
 
-    let div = document.getElementById("listaCursos");
-    div.innerHTML = "";
+// Ler campo independente de maiúsculas (nome da propriedade pode variar)
+function getField(obj, names){
+  for(const n of names){
+    if(obj[n] !== undefined) return obj[n];
+  }
+  return null;
+}
 
-    cursos.forEach(c => {
-        // Converte imagem drive → lh3.google...
-        let img = c.imagem.replace(
-            "https://drive.google.com/uc?export=view&id=",
-            "https://lh3.googleusercontent.com/d/"
-        ) + "=s1000";
+async function carregar(){
+  try {
+    const res = await fetch(WEBAPP); // o doGet retorna array de objetos
+    const dados = await res.json();
+    console.log("Dados recebidos do WebApp:", dados); // => abra o console para inspecionar
+    const grid = document.getElementById("grid");
+    grid.innerHTML = "";
 
-        div.innerHTML += `
-            <div class="item">
-                <input type="checkbox" value="${c.PDF}">
-                <img src="${img}" alt="Imagem do curso">
-            </div>
-        `;
+    dados.forEach(item => {
+      // pega nome/imagem/pdf independentemente de chave maiúscula
+      const nome = getField(item, ["nome","Nome","title","curso"]) || "";
+      const rawImg = getField(item, ["imagem","Imagem","image","img"]) || "";
+      const pdf = getField(item, ["pdf","PDF","Pdf","file"]) || "";
+
+      const imgUrl = toDirectImageURL(rawImg);
+      console.log("imgUrl gerada:", imgUrl, "pdf:", pdf);
+
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
+        <input type="checkbox" value="${pdf}">
+        <img src="${imgUrl || 'https://via.placeholder.com/400x300?text=Sem+Imagem'}" 
+             onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+      `;
+      grid.appendChild(div);
     });
+  } catch (err) {
+    console.error("Erro ao carregar cursos:", err);
+    document.getElementById("grid").innerHTML = "<div style='color:#f88'>Erro ao carregar cursos — veja console.</div>"
+  }
 }
 
-/* SALVAR DADOS LOCALMENTE */
-function salvarDados() {
-    localStorage.setItem("nome", document.getElementById("nome").value);
-    localStorage.setItem("telefone", document.getElementById("telefone").value);
-    localStorage.setItem("email", document.getElementById("email").value);
-
-    alert("Dados salvos! Agora selecione os treinamentos.");
+function salvarDados(){
+  const n = document.getElementById("nome").value.trim();
+  const t = document.getElementById("telefone").value.trim();
+  const e = document.getElementById("email").value.trim();
+  if(!n || !e){ alert("Preencha ao menos nome e e-mail antes de salvar."); return; }
+  localStorage.setItem("gp_nome", n);
+  localStorage.setItem("gp_telefone", t);
+  localStorage.setItem("gp_email", e);
+  alert("Dados salvos localmente.");
 }
 
-/* SOLICITAR PDFs SELECIONADOS */
-function solicitarPDFs() {
-    let nome = localStorage.getItem("nome");
-    let email = localStorage.getItem("email");
+async function solicitar(){
+  const nome = localStorage.getItem("gp_nome");
+  const telefone = localStorage.getItem("gp_telefone") || "";
+  const email = localStorage.getItem("gp_email");
+  if(!nome || !email){ alert("Salve nome e e-mail antes de solicitar."); return; }
 
-    if (!nome || !email) {
-        alert("Preencha nome e e-mail antes de solicitar os PDFs.");
-        return;
-    }
+  const checked = [...document.querySelectorAll("#grid input[type=checkbox]:checked")].map(i => i.value).filter(Boolean);
+  if(checked.length===0){ alert("Selecione ao menos um curso."); return; }
 
-    // coleta os PDFs selecionados
-    let selecionados = [...document.querySelectorAll("input[type=checkbox]:checked")].map(c => c.value);
-
-    if (selecionados.length === 0) {
-        alert("Selecione ao menos um treinamento.");
-        return;
-    }
-
-    // Envia para o Apps Script
-    fetch("https://script.google.com/macros/s/AKfycbzAQozrqKD_zwMbAZY4cPU_tpsPYVk1Wsp6Z2JM4D9o8c3tNAbgKUftaU6rmQWoIZvO/exec", {
-        method: "POST",
-        body: JSON.stringify({
-            nome: nome,
-            email: email,
-            pdfs: selecionados
-        })
-    });
-
-    alert("Solicitação enviada! Os PDFs chegarão no seu e-mail.");
+  // montar payload compatível com seu doPost
+  const payload = { action: "solicitar", nome, telefone, email, pdfs: checked };
+  try {
+    // NOTE: pode dar CORS; o Apps Script aceita POST normalmente se publicado.
+    await fetch(WEBAPP, { method: "POST", headers:{ 'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    document.getElementById("status").innerText = "Solicitação enviada! Verifique seu e-mail.";
+  } catch(err){
+    console.error("erro ao enviar:", err);
+    document.getElementById("status").innerText = "Erro ao enviar. Veja console.";
+  }
 }
 
-carregarCursos();
+// inicializa
+carregar();
 </script>
-
 </body>
 </html>
