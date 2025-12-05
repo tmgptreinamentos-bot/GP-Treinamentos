@@ -3,150 +3,144 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Painel GP Treinamentos</title>
+<title>GP Treinamentos</title>
 
 <style>
-    /* ========================
-       CORES E TEMAS
-       Você pode mudar TUDO aqui
-       ======================== */
-    :root {
-        --bg1: #f0f4ff;      /* cor superior do gradiente */
-        --bg2: #dbe1ff;      /* cor inferior do gradiente */
-        --card-bg: white;
-        --text: #222;
-        --accent: #1d4ed8;   /* cor dos botões / títulos */
-        --border: #cbd5e1;
-    }
+/* ============================
+       TEMA PRETO E DOURADO
+   ============================ */
+:root {
+    --bg1: #000000;
+    --bg2: #2b2b2b;
+    --card-bg: #111111;
+    --text: #ffffff;
+    --gold: #d4af37;
+    --border: #3a3a3a;
+}
 
-    /* Fundo com gradiente */
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(180deg, var(--bg1), var(--bg2));
-        min-height: 100vh;
-        padding: 20px;
-    }
+/* Fundo com gradiente */
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(180deg, var(--bg1), var(--bg2));
+    color: var(--text);
+    padding: 20px;
+}
 
-    /* Centraliza o conteúdo */
-    .container {
-        max-width: 900px;
-        margin: auto;
-    }
+/* Área central */
+.container {
+    max-width: 900px;
+    margin: auto;
+}
 
-    /* Título do sistema */
-    h1 {
-        text-align: center;
-        color: var(--accent);
-        margin-bottom: 30px;
-    }
+/* Título */
+h1 {
+    text-align: center;
+    color: var(--gold);
+    font-size: 28px;
+    margin-bottom: 25px;
+}
 
-    /* ========================
+/* ============================
        CARD DO FORMULÁRIO
-       ======================== */
-    .card {
-        background: var(--card-bg);
-        padding: 20px;
-        border-radius: 12px;
-        border: 1px solid var(--border);
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+   ============================ */
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+    margin-bottom: 40px;
+}
 
-        /* ❗ AQUI VOCÊ AUMENTA A LARGURA DA BORDA */
-        width: 100%;
-    }
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--gold);
+}
 
-    /* Rótulos */
-    label {
-        font-size: 14px;
-        color: var(--text);
-        font-weight: bold;
-        margin-bottom: 5px;
-        display: block;
-    }
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border);
+    background: #222;
+    color: var(--text);
+    font-size: 16px;
+}
 
-    /* Campos de texto */
-    input {
-        width: 100%;              /* ❗ Ajusta largura dos campos */
-        padding: 12px;
-        margin-bottom: 15px;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        font-size: 16px;
-    }
+/* Botão principal */
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: var(--gold);
+    color: #000;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+button:hover {
+    opacity: 0.85;
+}
 
-    /* Botão */
-    button {
-        width: 100%;
-        padding: 14px;
-        border: none;
-        background: var(--accent);
-        color: white;
-        font-size: 18px;
-        border-radius: 10px;
-        cursor: pointer;
-        margin-top: 10px;
-    }
+/* ============================
+       LISTA DE CURSOS
+   ============================ */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
 
-    button:hover {
-        opacity: 0.9;
-    }
+.item {
+    background: var(--card-bg);
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-align: center;
+    position: relative;
+}
 
-    /* ========================
-       LISTA DE SETORES
-       ======================== */
-    .setores {
-        margin-top: 40px;
-    }
+/* Imagem do curso */
+.item img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
 
-    .setor {
-        background: var(--card-bg);
-        border: 1px solid var(--border);
-        padding: 15px;
-        border-radius: 10px;
-        display: flex;
-        gap: 15px;
-        margin-bottom: 20px;
-        align-items: center;
-    }
+/* Checkbox no canto */
+.item input[type="checkbox"] {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    transform: scale(1.4);
+}
 
-    .setor img {
-        width: 80px;            /* ❗ tamanho da imagem */
-        height: 80px;
-        border-radius: 8px;
-        object-fit: cover;
-        border: 1px solid var(--border);
-    }
-
-    .setor-info {
-        flex-grow: 1;
-    }
-
-    .setor-info h3 {
-        margin: 0;
-        color: var(--accent);
-        font-size: 20px;
-    }
-
-    .setor-info small {
-        color: #555;
-    }
-
-    /* Links em cartões */
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
+/* Botão de solicitar */
+#btnSolicitar {
+    margin-top: 30px;
+    background: var(--gold);
+    color: #000;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 12px;
+}
 </style>
 </head>
 
 <body>
 <div class="container">
 
-    <h1>GP - Treinamentos</h1>
+    <h1>GP Treinamentos</h1>
 
-    <!-- ========================
-         FORMULÁRIO
-         ======================== -->
+    <!-- FORMULÁRIO -->
     <div class="card">
         <label>Nome:</label>
         <input type="text" id="nome" placeholder="Seu nome">
@@ -160,56 +154,82 @@
         <button onclick="salvarDados()">Entrar</button>
     </div>
 
-    <!-- ========================
-         LISTA DE SETORES (DINÂMICA)
-         ======================== -->
-    <div class="setores" id="listaSetores"></div>
+    <!-- LISTA DINÂMICA -->
+    <div class="grid" id="listaCursos"></div>
+
+    <!-- Botão de solicitar PDFs -->
+    <button id="btnSolicitar" onclick="solicitarPDFs()">Solicitar Selecionados</button>
 
 </div>
 
 <script>
-/* =====================================
-   FUNÇÃO PARA CARREGAR SETORES DA PLANILHA
-   ===================================== */
-async function carregarSetores() {
+/* CARREGAR CURSOS DA PLANILHA */
+async function carregarCursos() {
     const url = "https://script.google.com/macros/s/AKfycbzAQozrqKD_zwMbAZY4cPU_tpsPYVk1Wsp6Z2JM4D9o8c3tNAbgKUftaU6rmQWoIZvO/exec";
 
     let dados = await fetch(url);
-    let setores = await dados.json();
+    let cursos = await dados.json();
 
-    let div = document.getElementById("listaSetores");
+    let div = document.getElementById("listaCursos");
     div.innerHTML = "";
 
-    setores.forEach(s => {
-        // IMAGEM AJUSTADA (lh3.google...)
-        let img = s.imagem.replace("https://drive.google.com/uc?export=view&id=", "https://lh3.googleusercontent.com/d/") + "=s500";
+    cursos.forEach(c => {
+        // Converte imagem drive → lh3.google...
+        let img = c.imagem.replace(
+            "https://drive.google.com/uc?export=view&id=",
+            "https://lh3.googleusercontent.com/d/"
+        ) + "=s1000";
 
         div.innerHTML += `
-        <a href="${s.PDF}" target="_blank">
-            <div class="setor">
-                <img src="${img}">
-                <div class="setor-info">
-                    <h3>${s.nome}</h3>
-                    <small>Clique para abrir o PDF</small>
-                </div>
+            <div class="item">
+                <input type="checkbox" value="${c.PDF}">
+                <img src="${img}" alt="Imagem do curso">
             </div>
-        </a>
         `;
     });
 }
 
-/* =====================================
-   FUNÇÃO PARA SALVAR NOME / TELEFONE / EMAIL
-   ===================================== */
+/* SALVAR DADOS LOCALMENTE */
 function salvarDados() {
     localStorage.setItem("nome", document.getElementById("nome").value);
     localStorage.setItem("telefone", document.getElementById("telefone").value);
     localStorage.setItem("email", document.getElementById("email").value);
 
-    alert("Dados salvos! Agora você pode acessar os treinamentos.");
+    alert("Dados salvos! Agora selecione os treinamentos.");
 }
 
-carregarSetores();
+/* SOLICITAR PDFs SELECIONADOS */
+function solicitarPDFs() {
+    let nome = localStorage.getItem("nome");
+    let email = localStorage.getItem("email");
+
+    if (!nome || !email) {
+        alert("Preencha nome e e-mail antes de solicitar os PDFs.");
+        return;
+    }
+
+    // coleta os PDFs selecionados
+    let selecionados = [...document.querySelectorAll("input[type=checkbox]:checked")].map(c => c.value);
+
+    if (selecionados.length === 0) {
+        alert("Selecione ao menos um treinamento.");
+        return;
+    }
+
+    // Envia para o Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbzAQozrqKD_zwMbAZY4cPU_tpsPYVk1Wsp6Z2JM4D9o8c3tNAbgKUftaU6rmQWoIZvO/exec", {
+        method: "POST",
+        body: JSON.stringify({
+            nome: nome,
+            email: email,
+            pdfs: selecionados
+        })
+    });
+
+    alert("Solicitação enviada! Os PDFs chegarão no seu e-mail.");
+}
+
+carregarCursos();
 </script>
 
 </body>
